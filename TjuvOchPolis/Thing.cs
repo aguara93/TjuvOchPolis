@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace TjuvOchPolis
 {
+    //skapar klassen som representerar en sak 
     public class Thing
     {
         public string Name { get; set; }
 
         public Thing(string name)
         {
-            Name = name;
+            Name = name; //konstruktor for att satta namnet
         }
     }
 }

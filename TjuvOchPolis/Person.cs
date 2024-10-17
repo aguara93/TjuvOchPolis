@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TjuvOchPolis
 {
-    //skapar class Person
+    //skapar basklassen for person
     public class Person
     {
         public string Name { get; set; }
@@ -15,6 +15,7 @@ namespace TjuvOchPolis
         public int XDirection { get; set; }
         public int YDirection { get; set; }
 
+        //konstruktor for att initiera gemensamma egenskaper
         public Person(string name, int x, int y, int xDirection, int yDirection)
         {
             Name = name;
@@ -23,88 +24,82 @@ namespace TjuvOchPolis
             XDirection = xDirection;
             YDirection = yDirection;
         }
-        //skapar metoden som Person ror sig
-        public virtual void Move(int width, int height)
+        //skapar metoden for personer att flytta pa staden
+        public void Move(int width, int height)
         {
             X += XDirection;
             Y += YDirection;
-
+            //om en person gor utanfor stads grans da kommer fran andra sidan
             if (X < 0) X = width - 1;
             else if (X >= width) X = 0;
 
             if (Y < 0) Y = height - 1;
             else if (Y >= height) Y = 0;
         }
-        //skapar metoden som Person stor som en bokstav (P, T, C) i konsolen
+        //skapar metoden som hamtar en symbol for personen
         public virtual char GetSymbol()
         {
             return ' ';
         }
 
-        //skapar forsta subklassen Police
+        //skapar forsta subklassen som representerar polis
         public class Police : Person
         {
-            public List<Thing> Inventory { get; set; }
-
-            public Police(string name, int x, int y, int xDirection, int yDirection)
-       : base(name, x, y, xDirection, yDirection)
+            public List<Thing> ConfiscatedStuff { get; set; }
+            //konstruktor for att initiera polisens egenskaper
+            public Police(string name, int x, int y, int xDirection, int yDirection, List<Thing> confiscatedStuff) 
+                : base(name, x, y, xDirection, yDirection)
             {
-                Inventory = new List<Thing>();
+                ConfiscatedStuff = confiscatedStuff;
             }
-
             public override char GetSymbol()
             {
                 return 'P';
             }
         }
-
-        //andra subklassen Thief
+        //andra subklassen for tjuv
         public class Thief : Person
         {
-            public List<Thing> Inventory { get; set; }
-
-            public Thief(string name, int x, int y, int xDirection, int yDirection)
+            public List<Thing> StolenStuff { get; set; }
+            //konstruktor
+            public Thief(string name, int x, int y, int xDirection, int yDirection, List<Thing> stolenStuff)
                 : base(name, x, y, xDirection, yDirection)
             {
-                Inventory = new List<Thing>();
+                StolenStuff = stolenStuff;
             }
             //metoden vad gor tjuv med saker fran Inventory nar traffar medborgare
-            public Thing Steal()
-            {
-                return new Thing("Stolen Item");
-            }
-
+           
             public override char GetSymbol()
             {
                 return 'T';
             }
         }
-        //tredje subklassen Citizen
+        //tredje subklassen for medborgiaren
         public class Citizen : Person
         {
-            public List<Thing> Inventory { get; set; }
+            public List<Thing> Belongings { get; set; }
 
-            public Citizen(string name, int x, int y, int xDirection, int yDirection)
+            public Citizen(string name, int x, int y, int xDirection, int yDirection, List<Thing> belongings)
                 : base(name, x, y, xDirection, yDirection)
             {
-                Inventory = new List<Thing>
+                Belongings = new List<Thing>
         {
-                    //citizen's inventory
+                    //medborgares inventory
             new Thing("Keys"),
             new Thing("Phone"),
             new Thing("Money"),
             new Thing("Watch")
         };
             }
-            //vad hander med citizen's inventory nar treffar han tjuven
+            //metoden vad hander med citizen's inventory nar treffar han tjuven
             public Thing Steal()
             {
-                if (Inventory.Count == 0) return null;
-                Random random = new Random();
-                int index = random.Next(Inventory.Count);
-                Thing stolenItem = Inventory[index];
-                Inventory.RemoveAt(index);
-                return stolenItem;
+                if (Belongings.Count == 0) return null; //om inga tillhorigheter returnerar null
+                Random random = new Random(); //skapar ett nytt Random objekt
+                int index = random.Next(Belongings.Count); //valjer en slumpmassig sak
+                Thing stolenItem = Belongings[index]; //hamtar stulna saken
+                Belongings.RemoveAt(index); //tar bort saken fran medborgarens tillhorigheter
+                return stolenItem; //returnerar den stulna saken
             }
             public override char GetSymbol()
             {

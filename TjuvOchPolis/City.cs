@@ -6,23 +6,27 @@ using System.Threading.Tasks;
 
 namespace TjuvOchPolis
 {
+    //skapar klass for staden
     public class City
     {
-        public int Width;
-        public int Height;
-        public List<Person> People;
+        public int Width; //stadens bredd
+        public int Height; //stadens hojd
+        public List<Person> People; //lista med personer i staden
 
+        //konstruktorn for att initiera stadens egenskaper
         public City(int width, int height, List<Person> people)
         {
             Width = width;
             Height = height;
             People = people;
         }
+        //metoden for att lagga till en person i staden
         public void AddPerson(Person person)
         {
             People.Add(person);
         }
-        public void ManageCity()
+        //metoden for att simulera vad hander i staden
+        public void CityLife()
         {
             while (true)
             {
