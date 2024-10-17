@@ -15,6 +15,8 @@ namespace TjuvOchPolis
                 city.AddPerson(new Thief($"Thief-{i}", RandomPosition(city.Width), RandomPosition(city.Height), random.Next(-1, 2), random.Next(-1, 2)));
             for (int i = 0; i < 30; i++)
                 city.AddPerson(new Citizen($"Citizen-{i}", RandomPosition(city.Width), RandomPosition(city.Height), random.Next(-1, 2), random.Next(-1, 2)));
+
+            city.ManageCity();
         }
     }
 }
