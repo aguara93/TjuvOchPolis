@@ -38,13 +38,19 @@ namespace TjuvOchPolis
             char[,] cityBorders = new char[Width, Height];
 
             for (int x = 0; x < Width; x++)
+            {
                 for (int y = 0; y < Height; y++)
+                {
                     cityBorders[x, y] = ' ';
+                }
+            }
 
             foreach (Person person in People)
             {
                 if (person.X >= 0 && person.X < Width && person.Y >= 0 && person.Y < Height)
+                {
                     cityBorders[person.X, person.Y] = person.GetSymbol();
+                }
             }
 
             for (int y = 0; y < Height; y++)
