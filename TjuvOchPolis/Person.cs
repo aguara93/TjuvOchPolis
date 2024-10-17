@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace TjuvOchPolis
 {
+    //skapar class Person
     public class Person
     {
         public string Name { get; set; }
@@ -22,6 +23,7 @@ namespace TjuvOchPolis
             XDirection = xDirection;
             YDirection = yDirection;
         }
+        //skapar metoden som Person ror sig
         public virtual void Move(int width, int height)
         {
             X += XDirection;
@@ -33,11 +35,13 @@ namespace TjuvOchPolis
             if (Y < 0) Y = height - 1;
             else if (Y >= height) Y = 0;
         }
+        //skapar metoden som Person stor som en bokstav (P, T, C) i konsolen
         public virtual char GetSymbol()
         {
             return ' ';
         }
 
+        //skapar forsta subklassen Police
         public class Police : Person
         {
             public List<Thing> Inventory { get; set; }
@@ -54,6 +58,7 @@ namespace TjuvOchPolis
             }
         }
 
+        //andra subklassen Thief
         public class Thief : Person
         {
             public List<Thing> Inventory { get; set; }
@@ -63,7 +68,7 @@ namespace TjuvOchPolis
             {
                 Inventory = new List<Thing>();
             }
-
+            //metoden vad gor tjuv med saker fran Inventory nar traffar medborgare
             public Thing Steal()
             {
                 return new Thing("Stolen Item");
@@ -74,6 +79,7 @@ namespace TjuvOchPolis
                 return 'T';
             }
         }
+        //tredje subklassen Citizen
         public class Citizen : Person
         {
             public List<Thing> Inventory { get; set; }
@@ -83,12 +89,14 @@ namespace TjuvOchPolis
             {
                 Inventory = new List<Thing>
         {
+                    //citizen's inventory
             new Thing("Keys"),
             new Thing("Phone"),
             new Thing("Money"),
             new Thing("Watch")
         };
             }
+            //vad hander med citizen's inventory nar treffar han tjuven
             public Thing Steal()
             {
                 if (Inventory.Count == 0) return null;
