@@ -51,6 +51,7 @@ namespace TjuvOchPolis
                 : base(name, x, y, xDirection, yDirection)
             {
                 ConfiscatedStuff = confiscatedStuff;
+                confiscatedStuff = new List<Thing>();
             }
             public override char GetSymbol()
             {
@@ -66,6 +67,7 @@ namespace TjuvOchPolis
                 : base(name, x, y, xDirection, yDirection)
             {
                 StolenStuff = stolenStuff;
+                stolenStuff = new List<Thing>();
             }
             //metoden vad gor tjuv med saker fran Inventory nar traffar medborgare
            
@@ -82,7 +84,8 @@ namespace TjuvOchPolis
             public Citizen(string name, int x, int y, int xDirection, int yDirection, List<Thing> belongings)
                 : base(name, x, y, xDirection, yDirection)
             {
-                Belongings = new List<Thing>
+                Belongings = belongings;
+                belongings = new List<Thing>
         {
                     //medborgares inventory
             new Thing("Keys"),

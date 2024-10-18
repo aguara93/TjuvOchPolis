@@ -16,11 +16,11 @@ namespace TjuvOchPolis
         public List<Person> People; //lista med personer i staden
 
         //konstruktorn for att initiera stadens egenskaper
-        public City(int width, int height, List<Person> people)
+        public City(int width, int height)
         {
             Width = width;
             Height = height;
-            People = people;
+            People = new List<Person>();
         }
 
         //metoden for att lagga till en person i staden
