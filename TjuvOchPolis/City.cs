@@ -38,21 +38,23 @@ namespace TjuvOchPolis
                 ShowCity();
                 MovePeople();
                 Interactions();
-                Thread.Sleep(100);
+                Thread.Sleep(2000);
             }
         }
 
         //metoden som visar staden
         public void ShowCity()
         {
+            int Width = 100;
+            int Height = 25;
             //skapar 2D array som stadsgranser
-            char[,] cityBorders = new char[Width, Height];
+            char[,] cityBorders = new char[Height, Width];
 
-            for (int x = 0; x < Width; x++)
+            for (int y = 0; y < Height; y++)
             {
-                for (int y = 0; y < Height; y++)
+                for (int x = 0; x < Width; x++)
                 {
-                    cityBorders[x, y] = ' '; //fyller granser med tomma utrymmen
+                    cityBorders[y, x] = ' '; //fyller granser med tomma utrymmen
                 }
             }
 
@@ -61,7 +63,7 @@ namespace TjuvOchPolis
             {
                 if (person.X >= 0 && person.X < Width && person.Y >= 0 && person.Y < Height)
                 {
-                    cityBorders[person.X, person.Y] = person.GetSymbol();
+                    cityBorders[person.Y, person.X] = person.GetSymbol();
                 }
             }
 
@@ -69,7 +71,7 @@ namespace TjuvOchPolis
             for (int y = 0; y < Height; y++)
             {
                 for (int x = 0; x < Width; x++)
-                    Console.WriteLine(cityBorders[x, y]);
+                    Console.Write(cityBorders[y, x]);
                 Console.WriteLine();
             }
         }
@@ -78,7 +80,7 @@ namespace TjuvOchPolis
         public void MovePeople()
         {
             foreach (Person person in People)
-                person.Move(Width, Height);
+                person.Move(Height, Width);
         }
 
         //metoden for att kolla interaktioner mellan alla personer
@@ -112,7 +114,7 @@ namespace TjuvOchPolis
             //thuv tjuvar fran medborgaren
             else if (p1 is Thief && p2 is Citizen)
             {
-                Citizen citizen = (Citizen)p1;
+                Citizen citizen = (Citizen)p2;
                 Thing stolenItem = citizen.Steal();
                 if (stolenItem != null)
                 {

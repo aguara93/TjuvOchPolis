@@ -29,7 +29,7 @@ namespace TjuvOchPolis
         {
             X += XDirection;
             Y += YDirection;
-            //om en person gor utanfor stads grans da kommer fran andra sidan
+            //om en person gor utanfor stadens grans da kommer fran andra sidan
             if (X < 0) X = width - 1;
             else if (X >= width) X = 0;
 
@@ -47,11 +47,10 @@ namespace TjuvOchPolis
         {
             public List<Thing> ConfiscatedStuff { get; set; }
             //konstruktor for att initiera polisens egenskaper
-            public Police(string name, int x, int y, int xDirection, int yDirection, List<Thing> confiscatedStuff) 
+            public Police(string name, int x, int y, int xDirection, int yDirection) 
                 : base(name, x, y, xDirection, yDirection)
             {
-                ConfiscatedStuff = confiscatedStuff;
-                confiscatedStuff = new List<Thing>();
+                ConfiscatedStuff = new List<Thing>();
             }
             public override char GetSymbol()
             {
@@ -63,11 +62,10 @@ namespace TjuvOchPolis
         {
             public List<Thing> StolenStuff { get; set; }
             //konstruktor
-            public Thief(string name, int x, int y, int xDirection, int yDirection, List<Thing> stolenStuff)
+            public Thief(string name, int x, int y, int xDirection, int yDirection)
                 : base(name, x, y, xDirection, yDirection)
             {
-                StolenStuff = stolenStuff;
-                stolenStuff = new List<Thing>();
+                StolenStuff = new List<Thing>();
             }
             //metoden vad gor tjuv med saker fran Inventory nar traffar medborgare
            
@@ -81,11 +79,10 @@ namespace TjuvOchPolis
         {
             public List<Thing> Belongings { get; set; }
 
-            public Citizen(string name, int x, int y, int xDirection, int yDirection, List<Thing> belongings)
+            public Citizen(string name, int x, int y, int xDirection, int yDirection)
                 : base(name, x, y, xDirection, yDirection)
             {
-                Belongings = belongings;
-                belongings = new List<Thing>
+                Belongings = new List<Thing>
         {
                     //medborgares inventory
             new Thing("Keys"),

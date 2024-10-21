@@ -39,21 +39,33 @@ namespace TjuvOchPolis
                 int index = random.Next(policeNames.Count);
                 string name = policeNames[index];
                 policeNames.RemoveAt(index);
-                city.AddPerson(new Person.Police(name, random.Next(0, city.Width), random.Next(0, city.Height), random.Next(-1, 2), random.Next(-1, 2), new List<Thing>()));
+
+                int xDirection = random.Next(0, 2) == 0 ? 1 : -1; //ga vanster eller hoger
+                int yDirection = random.Next(0, 2) == 0 ? 1 : -1; //ga upp eller ner
+
+                city.AddPerson(new Person.Police(name, random.Next(0, city.Width), random.Next(0, city.Height), random.Next(-1, 2), random.Next(-1, 2)));
             }
             for (int i = 0; i < thiefCount; i++)
             {
                 int index = random.Next(thiefNames.Count);
                 string name = thiefNames[index];
                 thiefNames.RemoveAt(index);
-                city.AddPerson(new Person.Thief(name, random.Next(0, city.Width), random.Next(0, city.Height), random.Next(-1, 2), random.Next(-1, 2), new List<Thing>()));
+
+                int xDirection = random.Next(0, 2) == 0 ? 1 : -1; //ga vanster eller hoger
+                int yDirection = random.Next(0, 2) == 0 ? 1 : -1; //ga upp eller ner
+
+                city.AddPerson(new Person.Thief(name, random.Next(0, city.Width), random.Next(0, city.Height), random.Next(-1, 2), random.Next(-1, 2)));
             }
             for (int i = 0; i < citizenCount; i++)
             {
                 int index = random.Next(citizenNames.Count);
                 string name = citizenNames[index];
                 citizenNames.RemoveAt(index);
-                city.AddPerson(new Person.Citizen(name, random.Next(0, city.Width), random.Next(0, city.Height), random.Next(-1, 2), random.Next(-1, 2), new List<Thing>()));
+
+                int xDirection = random.Next(0, 2) == 0 ? 1 : -1; //ga vanster eller hoger
+                int yDirection = random.Next(0, 2) == 0 ? 1 : -1; //ga upp eller ner
+
+                city.AddPerson(new Person.Citizen(name, random.Next(0, city.Width), random.Next(0, city.Height), random.Next(-1, 2), random.Next(-1, 2)));
             }
         }
     }
