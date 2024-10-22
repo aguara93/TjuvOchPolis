@@ -42,7 +42,7 @@ namespace TjuvOchPolis
             return ' ';
         }
 
-        //skapar forsta subklassen som representerar polis
+        //subklassen som representerar polis
         public class Police : Person
         {
             public List<Thing> ConfiscatedStuff { get; set; }
@@ -57,7 +57,7 @@ namespace TjuvOchPolis
                 return 'P';
             }
         }
-        //andra subklassen for tjuv
+        //subklassen for tjuv
         public class Thief : Person
         {
             public List<Thing> StolenStuff { get; set; }
@@ -74,7 +74,7 @@ namespace TjuvOchPolis
                 return 'T';
             }
         }
-        //tredje subklassen for medborgiaren
+        //subklassen for medborgiaren
         public class Citizen : Person
         {
             public List<Thing> Belongings { get; set; }
@@ -84,7 +84,7 @@ namespace TjuvOchPolis
             {
                 Belongings = new List<Thing>
         {
-                    //medborgares inventory
+            //medborgares inventory
             new Thing("Keys"),
             new Thing("Phone"),
             new Thing("Money"),
@@ -98,7 +98,7 @@ namespace TjuvOchPolis
                 Random random = new Random(); //skapar ett nytt Random objekt
                 int index = random.Next(Belongings.Count); //valjer en slumpmassig sak
                 Thing stolenItem = Belongings[index]; //hamtar stulna saken
-                Belongings.RemoveAt(index); //tar bort saken fran medborgarens tillhorigheter
+                Belongings.RemoveAt(index); //tar bort en sak fran medborgarens tillhorigheter
                 return stolenItem; //returnerar den stulna saken
             }
             public override char GetSymbol()
